@@ -16,9 +16,6 @@ import ReactNative, {
     ColorPropType,
 } from 'react-native';
 
-// import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
-
-
 const RCTBaiduMapConstants = UIManager.RCTBaiduMap.Constants;
 
 type Event = Object;
@@ -394,7 +391,7 @@ const BaiduMapView= React.createClass({
         rightCalloutView: undefined,
       };
       result.id = id || encodeURIComponent(JSON.stringify(result));
-      result.image = image && require(image);
+      result.image = image;
       return result;
     });
     overlays = overlays && overlays.map((overlay: Object) => {
@@ -490,7 +487,7 @@ const BaiduMapView= React.createClass({
         userLocationViewParams.accuracyCircleFillColor = accuracyCircleFillColor;
         userLocationViewParams.accuracyCircleStrokeColor = accuracyCircleStrokeColor;
 
-        image = image && require(image);
+        image = image;
         userLocationViewParams.image = image;
     }
 
