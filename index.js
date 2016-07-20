@@ -248,25 +248,6 @@ const BaiduMapView= React.createClass({
        */
       id: React.PropTypes.string,
 
-      /**
-       * Deprecated. Use the left/right/detailsCalloutView props instead.
-       */
-      hasLeftCallout: deprecatedPropType(
-        React.PropTypes.bool,
-        'Use `leftCalloutView` instead.'
-      ),
-      hasRightCallout: deprecatedPropType(
-        React.PropTypes.bool,
-        'Use `rightCalloutView` instead.'
-      ),
-      onLeftCalloutPress: deprecatedPropType(
-        React.PropTypes.func,
-        'Use `leftCalloutView` instead.'
-      ),
-      onRightCalloutPress: deprecatedPropType(
-        React.PropTypes.func,
-        'Use `rightCalloutView` instead.'
-      ),
     })),
 
     /**
