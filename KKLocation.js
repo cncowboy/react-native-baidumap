@@ -14,7 +14,7 @@
 import React from 'react';
 
 var RCTDeviceEventEmitter = React.DeviceEventEmitter;
-var KKLocationObserver = React.NativeModules.KKLocationObserver;
+var KKLocationObserver = React.NativeModules.RCTBaiduLocation;
 
 
 var subscriptions = [];

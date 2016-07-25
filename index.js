@@ -3,7 +3,7 @@
 import React from 'react';
 
 
-import ReactNative, {
+import {
     EdgeInsetsPropType,
     Image,
     NativeMethodsMixin,
@@ -503,7 +503,7 @@ const BaiduMapView= React.createClass({
           return;
       }
       UIManager.dispatchViewManagerCommand(
-          ReactNative.findNodeHandle(this.refs["baiduMap"]),
+          React.findNodeHandle(this.refs["baiduMap"]),
           UIManager.RCTBaiduMap.Commands.zoomToLocs,
           [locs]
       );

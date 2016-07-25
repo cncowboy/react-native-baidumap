@@ -8,6 +8,6 @@
   "dependencies": {
     "react": "^15.1.0",
     "react-native": "^0.28.0",
-    "react-native-baidumap": "0.0.14"
+    "react-native-baidumap": "git+https://github.com/cncowboy/react-native-baidumap.git"
   }
 }
