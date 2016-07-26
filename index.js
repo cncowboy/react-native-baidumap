@@ -14,6 +14,7 @@ import {
     UIManager,
     processColor,
     ColorPropType,
+    findNodeHandle,
 } from 'react-native';
 
 const RCTBaiduMapConstants = UIManager.RCTBaiduMap.Constants;
@@ -503,7 +504,7 @@ const BaiduMapView= React.createClass({
           return;
       }
       UIManager.dispatchViewManagerCommand(
-          React.findNodeHandle(this.refs["baiduMap"]),
+          findNodeHandle(this.refs["baiduMap"]),
           UIManager.RCTBaiduMap.Commands.zoomToLocs,
           [locs]
       );
