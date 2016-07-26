@@ -11,12 +11,11 @@ import {
   View
 } from 'react-native';
 import BaiduMap from 'react-native-baidumap';
-// import KKLocation from 'react-native-baidumap/KKLocation';
+import KKLocation from 'react-native-baidumap/KKLocation';
 
 class BaiduMapDemo extends Component {
     componentDidMount() {
         this.refs["mapView"].zoomToLocs([[39.832136, 116.34095]]);
-        /*
         KKLocation.getCurrentPosition((position) => {
             console.log("location get current position: ", position);
         }, (error) => {
@@ -25,7 +24,6 @@ class BaiduMapDemo extends Component {
         this.watchID = KKLocation.watchPosition((position) => {
             console.log("watch position: ", position);
         });
-        */ 
     } 
     render() {
       return (

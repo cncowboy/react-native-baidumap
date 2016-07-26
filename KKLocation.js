@@ -12,9 +12,13 @@
 'use strict';
 
 import React from 'react';
+import {
+  DeviceEventEmitter,
+  NativeModules
+} from 'react-native';
 
-var RCTDeviceEventEmitter = React.DeviceEventEmitter;
-var KKLocationObserver = React.NativeModules.RCTBaiduLocation;
+var RCTDeviceEventEmitter = DeviceEventEmitter;
+var KKLocationObserver = NativeModules.KKLocationObserver;
 
 
 var subscriptions = [];
