@@ -114,12 +114,28 @@ const CGFloat RCTBaiduMapZoomBoundBuffer = 0.01;
 - (void)setFollowUserLocation:(BOOL)followUserLocation
 {
     if (self.followUserLocation != followUserLocation) {
-        if (followUserLocation) {
+        if (self.followUserLocationWithHeading) {
+            self.userTrackingMode = BMKUserTrackingModeFollowWithHeading;
+        } else if (followUserLocation) {
             self.userTrackingMode = BMKUserTrackingModeFollow;
         } else {
             self.userTrackingMode = BMKUserTrackingModeNone;
         }
         _followUserLocation = followUserLocation;
+    }
+}
+
+- (void)setFollowUserLocationWithHeading:(BOOL)followUserLocationWithHeading
+{
+    if (self.followUserLocationWithHeading != followUserLocationWithHeading) {
+        if (followUserLocationWithHeading) {
+            self.userTrackingMode = BMKUserTrackingModeFollowWithHeading;
+        } else if (self.followUserLocation) {
+            self.userTrackingMode = BMKUserTrackingModeFollow;
+        } else {
+            self.userTrackingMode = BMKUserTrackingModeNone;
+        }
+        _followUserLocationWithHeading = followUserLocationWithHeading;
     }
 }
 

@@ -25,6 +25,8 @@ typedef struct {
     double maximumAge;
     double accuracy;
     double distanceFilter;
+    BOOL pausesLocationUpdatesAutomatically;
+    BOOL allowsBackgroundLocationUpdates;
 } KKLocationOptions;
 
 #define KK_DEFAULT_LOCATION_ACCURACY kCLLocationAccuracyHundredMeters
@@ -37,12 +39,20 @@ typedef struct {
     
     double distanceFilter = options[@"distanceFilter"] == NULL ? KK_DEFAULT_LOCATION_ACCURACY
     : [RCTConvert double:options[@"distanceFilter"]] ?: kCLDistanceFilterNone;
-    
+
+    BOOL pausesLocationUpdatesAutomatically = options[@"pausesLocationUpdatesAutomatically"] == NULL ? NO
+    : [RCTConvert BOOL:options[@"pausesLocationUpdatesAutomatically"]] ?: NO;
+
+    BOOL allowsBackgroundLocationUpdates = options[@"allowsBackgroundLocationUpdates"] == NULL ? NO
+    : [RCTConvert BOOL:options[@"allowsBackgroundLocationUpdates"]] ?: NO;
+ 
     return (KKLocationOptions){
         .timeout = [RCTConvert NSTimeInterval:options[@"timeout"]] ?: INFINITY,
         .maximumAge = [RCTConvert NSTimeInterval:options[@"maximumAge"]] ?: INFINITY,
         .accuracy = [RCTConvert BOOL:options[@"enableHighAccuracy"]] ? kCLLocationAccuracyBest : KK_DEFAULT_LOCATION_ACCURACY,
-        .distanceFilter = distanceFilter
+        .distanceFilter = distanceFilter,
+        .pausesLocationUpdatesAutomatically = pausesLocationUpdatesAutomatically,
+        .allowsBackgroundLocationUpdates = allowsBackgroundLocationUpdates
     };
 }
 
@@ -128,6 +138,8 @@ RCT_EXPORT_MODULE(KKLocationObserver);
     if (!_locationService) {
         _locationService = [BMKLocationService new];
         _locationService.distanceFilter = _observerOptions.distanceFilter;
+        _locationService.pausesLocationUpdatesAutomatically = _observerOptions.pausesLocationUpdatesAutomatically;
+        _locationService.allowsBackgroundLocationUpdates = _observerOptions.allowsBackgroundLocationUpdates;
         _locationService.delegate = self;
     }
     
@@ -156,7 +168,6 @@ RCT_EXPORT_MODULE(KKLocationObserver);
 RCT_EXPORT_METHOD(startObserving:(KKLocationOptions)options)
 {
     [self checkLocationConfig];
-    
     // Select best options
     _observerOptions = options;
     for (KKLocationRequest *request in _pendingRequests) {
@@ -242,6 +253,10 @@ RCT_EXPORT_METHOD(getCurrentPosition:(KKLocationOptions)options
 
 #pragma mark - BMKLocationServiceDelegate
 
+- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
+{
+    CLLocation *location = userLocation.location;
+}
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
     CLLocation *location = userLocation.location;

@@ -23,6 +23,7 @@ RCT_EXTERN const CGFloat RCTBaiduMapZoomBoundBuffer;
 @interface RCTBaiduMap : BMKMapView
 
 @property (nonatomic, assign) BOOL followUserLocation;
+@property (nonatomic, assign) BOOL followUserLocationWithHeading;
 @property (nonatomic, assign) BOOL hasStartedRendering;
 @property (nonatomic, assign) BOOL autoZoomToSpan;
 @property (nonatomic, strong) BMKLocationViewDisplayParam *userLocationViewParams;
