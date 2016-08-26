@@ -114,7 +114,7 @@ var KKLocation = {
 
   stopObserving: function() {
     if (updatesEnabled) {
-      RCTLocationObserver.stopObserving();
+      KKLocationObserver.stopObserving();
       updatesEnabled = false;
       for (var ii = 0; ii < subscriptions.length; ii++) {
         var sub = subscriptions[ii];
@@ -130,3 +130,4 @@ var KKLocation = {
 };
 
 module.exports = KKLocation;
+
